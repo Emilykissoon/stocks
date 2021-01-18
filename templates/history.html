@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Prices</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in range(0,length) %}
+                {% if shares[l] != 0 %}
+                <tr>
+                    <td>{{symbol[l]}}</td>
+                    <td>{{shares[l]}}</td>
+                    <td>${{'%0.2f'|format((price[l]|abs)|float)}}</td>
+                    <td>{{transacted[l]}}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

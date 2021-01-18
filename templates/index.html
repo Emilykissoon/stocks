@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>${{'%0.2f'|format(t|float)}}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for l in range(0, length) %}
+                {% if shares[l] != 0 %}
+                    <tr>
+                        <td>{{symbols[l]}}</td>
+                        <td>{{names[l]}}</td>
+                        <td>{{shares[l]}}</td>
+                        <td>${{'%0.2f'|format(price[l]|float)}}</td>
+                        <td>${{'%0.2f'|format(total[l]|float)}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>${{'%0.2f'|format(tot|float)}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
